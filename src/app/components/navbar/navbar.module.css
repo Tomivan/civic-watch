@@ -1,0 +1,74 @@
+.navbar {
+    display: flex;
+    padding: 1em;
+}
+.logo {
+    display: flex;
+}
+.logoText {
+    margin-left: 0.5em;
+}
+.logoTitle {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.logoHighlight {
+    color: #0f5730;
+}
+.links {
+    display: flex;
+    gap: 1em;
+    margin: 1% 0 0 7%;
+}
+.linkIcon {
+    margin-right: 0.5em;
+    position: relative;
+    top: 5px
+}
+.span {
+    margin-top: 0;
+}
+.search {
+    width: 20vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 6vh;
+    margin: 0.5% 0 0 5%;
+}
+.search::placeholder {
+    padding-left: 0.5em;
+}
+.icons {
+    display: flex;
+    gap: 0.5em;
+    margin: 0.5% 0 0 2%;
+}
+.icon {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+.icon1 {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 0.7em;
+}
+.addButton {
+    background-color: #0f5730;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 14vw;
+    height: 7vh;
+    margin: 0.5% 0 0 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+    box-sizing: border-box;
+}
+.addIcon {
+    margin-right: 0.5em;
+}

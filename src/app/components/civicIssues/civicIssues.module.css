@@ -2,12 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 2em;
   color: #1a1a1a;
-  background-color: #f8f9fa;
 }
 
 .mainContent {

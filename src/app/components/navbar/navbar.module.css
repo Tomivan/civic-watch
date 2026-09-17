@@ -1,6 +1,6 @@
 .navbar {
     display: flex;
-    padding: 1em;
+    padding: 1em 2em;
 }
 .logo {
     display: flex;
@@ -18,7 +18,7 @@
 .links {
     display: flex;
     gap: 1em;
-    margin: 1% 0 0 7%;
+    margin: 1% 0 0 6%;
 }
 .linkIcon {
     margin-right: 0.5em;
@@ -61,7 +61,7 @@
     cursor: pointer;
     width: 14vw;
     height: 7vh;
-    margin: 0.5% 0 0 2%;
+    margin: 2% 0 0 15%;
     display: flex;
     align-items: center;
     justify-content: center;

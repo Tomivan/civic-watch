@@ -35,10 +35,12 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faCog} size="1x" color="#0f5730" className={styles.icon1} />
             <Image src={Dark} alt="Dark Mode" width={40} height={40} className={styles.icon} />
         </div>
-        <button className={styles.addButton}>
-            <Image src={Add} alt="Add Report" width={20} height={20} className={styles.addIcon} />
-            Report Incident
-        </button>
+        <a href="/report-incident" className={styles.reportLink}>
+            <button className={styles.addButton}>
+                <Image src={Add} alt="Add Report" width={20} height={20} className={styles.addIcon} />
+                Report Incident
+            </button>
+        </a>
     </nav>
   );
 };

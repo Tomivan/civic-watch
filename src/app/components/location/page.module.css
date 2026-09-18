@@ -5,10 +5,11 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
-  color: #111827;
-  background-color: #f8f9fa;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
   min-height: 100vh;
   align-items: start;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar {
@@ -23,10 +24,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 12px;
   padding: 0.75rem;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .stepItem {
@@ -39,7 +41,7 @@
 }
 
 .stepActive {
-  background: #e6f4ea;
+  background: var(--bg-accent-soft);
 }
 
 .stepNumber {
@@ -49,41 +51,44 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 1.5px solid #d1d5db;
-  color: #6b7280;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
   font-size: 0.8rem;
   font-weight: 600;
   flex-shrink: 0;
-  background: #ffffff;
+  background: var(--bg-surface);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .stepActive .stepNumber {
-  border-color: #059669;
-  color: #059669;
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
 .stepCompleted .stepNumber {
-  background: #059669;
-  border-color: #059669;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #ffffff;
 }
 
 .stepLabel {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-muted);
+  transition: color 0.3s;
 }
 
 .stepActive .stepLabel {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .privacyCard {
-  background: #e6f4ea;
-  border: 1px solid #a7f3d0;
+  background: var(--bg-accent-soft);
+  border: 1px solid var(--border-accent);
   border-radius: 12px;
   overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .privacyHeader {
@@ -93,18 +98,20 @@
   padding: 0.85rem 1rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #065f46;
+  color: var(--text-accent);
+  transition: color 0.3s;
 }
 
 .privacyBody {
-  background: #ffffff;
+  background: var(--bg-surface);
   margin: 0 0.5rem 0.5rem 0.5rem;
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s;
 }
 
 .toggleRow {
@@ -116,12 +123,13 @@
 .toggleSwitch {
   width: 36px;
   height: 20px;
-  background: #065f46;
+  background: var(--bg-accent-strong);
   border-radius: 999px;
   position: relative;
   flex-shrink: 0;
   margin-top: 2px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .toggleKnob {
@@ -130,28 +138,32 @@
   left: 18px;
   width: 16px;
   height: 16px;
-  background: #ffffff;
+  background: var(--bg-surface);
   border-radius: 50%;
+  transition: background-color 0.3s;
 }
 
 .toggleText strong {
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
+  transition: color 0.3s;
 }
 
 .toggleText p {
   margin: 0;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
+  transition: color 0.3s;
 }
 
 .privacyDivider {
   height: 1px;
-  background: #f3f4f6;
+  background: var(--bg-subtle);
+  transition: background-color 0.3s;
 }
 
 .privacyNote {
@@ -159,8 +171,9 @@
   gap: 0.5rem;
   align-items: flex-start;
   font-size: 0.75rem;
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.5;
+  transition: color 0.3s;
 }
 
 .privacyNote img {
@@ -175,10 +188,11 @@
 }
 
 .mainCard {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 12px;
   padding: 2rem;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .mainHeader {
@@ -189,14 +203,16 @@
   margin: 0 0 0.35rem 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
+  transition: color 0.3s;
 }
 
 .mainHeader p {
   margin: 0;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
+  transition: color 0.3s;
 }
 
 .form {
@@ -211,17 +227,17 @@
   gap: 1rem;
   width: 100%;
   padding: 1rem 1.25rem;
-  background: #e6f4ea;
-  border: 1px solid #a7f3d0;
+  background: var(--bg-accent-soft);
+  border: 1px solid var(--border-accent);
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
   font-family: inherit;
-  transition: background 0.2s;
+  transition: background-color 0.2s, border-color 0.3s;
 }
 
 .gpsBanner:hover {
-  background: #d1fae5;
+  background: var(--bg-accent-hover);
 }
 
 .gpsIconBox {
@@ -230,27 +246,30 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: #ffffff;
+  background: var(--bg-surface);
   border-radius: 8px;
   flex-shrink: 0;
+  transition: background-color 0.3s;
 }
 
 .gpsText strong {
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #065f46;
+  color: var(--text-accent);
   margin-bottom: 0.2rem;
+  transition: color 0.3s;
 }
 
 .gpsText p {
   margin: 0;
   font-size: 0.8rem;
-  color: #047857;
+  color: var(--text-accent);
   line-height: 1.4;
+  opacity: 0.85;
+  transition: color 0.3s;
 }
 
-/* Form Groups */
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -266,11 +285,12 @@
 .label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
+  transition: color 0.3s;
 }
 
 .required {
-  color: #dc2626;
+  color: var(--accent-danger);
   margin-left: 0.15rem;
 }
 
@@ -280,21 +300,21 @@
   padding: 0.75rem 1rem;
   font-size: 0.9rem;
   font-family: inherit;
-  color: #111827;
-  background: #ffffff;
-  border: 1px solid #d1d5db;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
   border-radius: 8px;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
 }
 
 .input::placeholder {
-  color: #9ca3af;
+  color: var(--text-faint);
 }
 
 .input:focus,
 .select:focus {
-  border-color: #059669;
+  border-color: var(--accent-primary);
   box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
 }
 
@@ -326,27 +346,31 @@
 .helperText {
   margin: 0;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
+  transition: color 0.3s;
 }
 
 .mapPreview {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-default);
   border-radius: 10px;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--bg-surface);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .mapCanvas {
   position: relative;
   height: 180px;
-  background-color: #e5ebd9;
+  background-color: var(--bg-subtle);
   background-image: 
-    linear-gradient(115deg, transparent 40%, #111827 40%, #111827 42%, transparent 42%),
-    linear-gradient(75deg, transparent 55%, #111827 55%, #111827 57%, transparent 57%),
-    linear-gradient(160deg, transparent 60%, #111827 60%, #111827 65%, transparent 65%),
-    linear-gradient(180deg, transparent 65%, #b3d4e0 65%, #b3d4e0 75%, transparent 75%);
+    linear-gradient(115deg, transparent 40%, var(--text-primary) 40%, var(--text-primary) 42%, transparent 42%),
+    linear-gradient(75deg, transparent 55%, var(--text-primary) 55%, var(--text-primary) 57%, transparent 57%),
+    linear-gradient(160deg, transparent 60%, var(--text-primary) 60%, var(--text-primary) 65%, transparent 65%),
+    linear-gradient(180deg, transparent 65%, var(--bg-page) 65%, var(--bg-page) 75%, transparent 75%);
   background-size: 100% 100%;
+  opacity: 0.9;
+  transition: background-color 0.3s;
 }
 
 .mapPinWrapper {
@@ -363,49 +387,55 @@
 .mapPinPulse {
   width: 14px;
   height: 14px;
-  background: #059669;
-  border: 3px solid #ffffff;
+  background: var(--accent-primary);
+  border: 3px solid var(--bg-surface);
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.25);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .mapPinLabel {
-  background: #ffffff;
+  background: var(--bg-surface);
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
   font-size: 0.7rem;
   font-weight: 600;
-  color: #111827;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
   white-space: nowrap;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .mapFooter {
   padding: 0.85rem 1rem;
-  background: #f9fafb;
-  border-top: 1px solid #e5e7eb;
+  background: var(--bg-page);
+  border-top: 1px solid var(--border-default);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .mapFooterLabel {
   display: block;
   font-size: 0.7rem;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.35rem;
+  transition: color 0.3s;
 }
 
 .mapFooterText {
   margin: 0;
   font-size: 0.8rem;
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.5;
+  transition: color 0.3s;
 }
 
 .mapFooterText strong {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 600;
+  transition: color 0.3s;
 }
 
 .footerNav {
@@ -423,15 +453,16 @@
   border: none;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--text-secondary);
   cursor: pointer;
   text-decoration: none;
   font-family: inherit;
   padding: 0.5rem 0;
+  transition: color 0.3s;
 }
 
 .cancelBtn:hover {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .continueBtn {
@@ -439,22 +470,22 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: #065f46;
-  color: #ffffff;
+  background: var(--bg-accent-strong);
+  color: var(--bg-surface);
   border: none;
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.3s;
   font-family: inherit;
 }
 
 .continueBtn:hover {
-  background: #044e38;
+  background: var(--bg-accent-hover);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
     grid-template-columns: 1fr;
     padding: 1rem;

@@ -1,11 +1,28 @@
 .container {
+  position: relative;
   width: 100%;
   max-width: 480px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  max-height: 90vh;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalIn 0.2s ease-out;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .header {
@@ -13,21 +30,24 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 1.5rem 1.5rem 1.25rem 1.5rem;
+  flex-shrink: 0;
 }
 
 .headerLeft h1 {
   margin: 0 0 0.35rem 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   letter-spacing: -0.01em;
+  transition: color 0.3s;
 }
 
 .headerLeft p {
   margin: 0;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
+  transition: color 0.3s;
 }
 
 .header > span {
@@ -37,7 +57,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  color: #9ca3af;
+  color: var(--text-faint);
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
@@ -45,14 +65,16 @@
 }
 
 .header > span:hover {
-  background: #f3f4f6;
-  color: #4b5563;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
 }
 
 .container hr {
   margin: 0;
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-default);
+  flex-shrink: 0;
+  transition: border-color 0.3s;
 }
 
 .notificationList {
@@ -60,37 +82,71 @@
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .notificationList > p {
   margin: 0;
   padding: 1rem 1.125rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 12px;
   line-height: 1.5;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .notificationList > p strong {
   display: block;
   font-size: 0.95rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
+  transition: color 0.3s;
 }
 
 .notificationList > p:nth-child(2),
 .notificationList > p:nth-child(5) {
-  color: #4b5563;
+  color: var(--text-secondary);
   font-size: 0.875rem;
+  transition: color 0.3s;
 }
 
 .notificationList > p:nth-child(3),
 .notificationList > p:nth-child(6) {
-  color: #9ca3af;
+  color: var(--text-faint);
   font-size: 0.8rem;
+  transition: color 0.3s;
 }
 
 .notificationList > p:nth-child(4) {
   margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 1.25rem 1.25rem 1rem 1.25rem;
+  }
+
+  .headerLeft h1 {
+    font-size: 1.1rem;
+  }
+
+  .headerLeft p {
+    font-size: 0.8rem;
+  }
+
+  .notificationList {
+    padding: 1rem 1.25rem 1.25rem 1.25rem;
+  }
+
+  .notificationList > p {
+    padding: 0.85rem 1rem;
+  }
 }

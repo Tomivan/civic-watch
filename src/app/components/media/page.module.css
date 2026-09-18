@@ -5,12 +5,12 @@
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #111827;
-  background-color: #f8f9fa;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
   min-height: 100vh;
   align-items: start;
   position: relative;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar {
@@ -25,10 +25,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 12px;
   padding: 0.75rem;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .stepItem {
@@ -41,7 +42,7 @@
 }
 
 .stepActive {
-  background: #e6f4ea;
+  background: var(--bg-accent-soft);
 }
 
 .stepNumber {
@@ -51,41 +52,44 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 1.5px solid #d1d5db;
-  color: #6b7280;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
   font-size: 0.8rem;
   font-weight: 600;
   flex-shrink: 0;
-  background: #ffffff;
+  background: var(--bg-surface);
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .stepActive .stepNumber {
-  border-color: #059669;
-  color: #059669;
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
 .stepCompleted .stepNumber {
-  background: #059669;
-  border-color: #059669;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #ffffff;
 }
 
 .stepLabel {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-muted);
+  transition: color 0.3s;
 }
 
 .stepActive .stepLabel {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .privacyCard {
-  background: #e6f4ea;
-  border: 1px solid #a7f3d0;
+  background: var(--bg-accent-soft);
+  border: 1px solid var(--border-accent);
   border-radius: 12px;
   overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .privacyHeader {
@@ -95,18 +99,20 @@
   padding: 0.85rem 1rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #065f46;
+  color: var(--text-accent);
+  transition: color 0.3s;
 }
 
 .privacyBody {
-  background: #ffffff;
+  background: var(--bg-surface);
   margin: 0 0.5rem 0.5rem 0.5rem;
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s;
 }
 
 .toggleRow {
@@ -118,12 +124,13 @@
 .toggleSwitch {
   width: 36px;
   height: 20px;
-  background: #065f46;
+  background: var(--bg-accent-strong);
   border-radius: 999px;
   position: relative;
   flex-shrink: 0;
   margin-top: 2px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .toggleKnob {
@@ -132,28 +139,32 @@
   left: 18px;
   width: 16px;
   height: 16px;
-  background: #ffffff;
+  background: var(--bg-surface);
   border-radius: 50%;
+  transition: background-color 0.3s;
 }
 
 .toggleText strong {
   display: block;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
+  transition: color 0.3s;
 }
 
 .toggleText p {
   margin: 0;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
+  transition: color 0.3s;
 }
 
 .privacyDivider {
   height: 1px;
-  background: #f3f4f6;
+  background: var(--bg-subtle);
+  transition: background-color 0.3s;
 }
 
 .privacyNote {
@@ -161,8 +172,9 @@
   gap: 0.5rem;
   align-items: flex-start;
   font-size: 0.75rem;
-  color: #4b5563;
+  color: var(--text-secondary);
   line-height: 1.5;
+  transition: color 0.3s;
 }
 
 .privacyNote img {
@@ -177,10 +189,11 @@
 }
 
 .mainCard {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 12px;
   padding: 2rem;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .mainHeader {
@@ -191,14 +204,16 @@
   margin: 0 0 0.35rem 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
+  transition: color 0.3s;
 }
 
 .mainHeader p {
   margin: 0;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
+  transition: color 0.3s;
 }
 
 .dropzone {
@@ -207,10 +222,11 @@
   align-items: center;
   justify-content: center;
   padding: 3rem 2rem;
-  border: 1.5px dashed #d1d5db;
+  border: 1.5px dashed var(--border-strong);
   border-radius: 12px;
-  background: #f9fafb;
+  background: var(--bg-page);
   text-align: center;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .uploadIconWrapper {
@@ -219,24 +235,27 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
   border-radius: 10px;
   margin-bottom: 1rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .dropzoneTitle {
   margin: 0 0 0.35rem 0;
   font-size: 1rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
+  transition: color 0.3s;
 }
 
 .dropzoneSubtitle {
   margin: 0 0 1.5rem 0;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--text-muted);
+  transition: color 0.3s;
 }
 
 .uploadButtons {
@@ -251,26 +270,27 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.25rem;
-  background: #ffffff;
-  border: 1px solid #d1d5db;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
   border-radius: 8px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   cursor: pointer;
   font-family: inherit;
   transition: all 0.2s;
 }
 
 .uploadBtn:hover {
-  background: #f3f4f6;
-  border-color: #9ca3af;
+  background: var(--bg-subtle);
+  border-color: var(--text-faint);
 }
 
 .footerWrapper {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 1em 0;
 }
 
 .footerNav {
@@ -287,15 +307,16 @@
   border: none;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--text-secondary);
   cursor: pointer;
   text-decoration: none;
   font-family: inherit;
   padding: 0.5rem 0;
+  transition: color 0.3s;
 }
 
 .backBtn:hover {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .submitBtn {
@@ -303,34 +324,35 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: #065f46;
-  color: #ffffff;
+  background: var(--bg-accent-strong);
+  color: var(--bg-surface);
   border: none;
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.3s;
   font-family: inherit;
 }
 
 .submitBtn:hover {
-  background: #044e38;
+  background: var(--bg-accent-hover);
 }
 
 .footerContext {
   margin: 0;
   padding-left: 0.25rem;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--text-muted);
+  transition: color 0.3s;
 }
 
 .footerContext strong {
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 600;
+  transition: color 0.3s;
 }
 
-/* --- Modal --- */
 .modalOverlay {
   position: fixed;
   inset: 0;
@@ -344,17 +366,18 @@
 }
 
 .modalContent {
-  background: #ffffff;
+  background: var(--bg-surface);
   border-radius: 16px;
   padding: 2.5rem;
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  transition: background-color 0.3s;
 }
 
 .modalIconWrapper {
@@ -363,58 +386,64 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  background: #e6f4ea;
+  background: var(--bg-accent-soft);
   border-radius: 50%;
   margin-bottom: 0.5rem;
+  transition: background-color 0.3s;
 }
 
 .modalContent h2 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
+  transition: color 0.3s;
 }
 
 .modalContent p {
   margin: 0;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.5;
+  transition: color 0.3s;
 }
 
 .modalRef {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
   border-radius: 8px;
   padding: 0.75rem 1.5rem;
   width: 100%;
   margin: 0.5rem 0;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .modalRef span {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
+  transition: color 0.3s;
 }
 
 .modalRef strong {
   font-size: 1.1rem;
-  color: #111827;
+  color: var(--text-primary);
   font-weight: 700;
   letter-spacing: 0.02em;
+  transition: color 0.3s;
 }
 
 .modalBtn {
   display: block;
   width: 100%;
   padding: 0.85rem;
-  background: #065f46;
-  color: #ffffff;
+  background: var(--bg-accent-strong);
+  color: var(--bg-surface);
   border: none;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -422,12 +451,12 @@
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.3s;
   margin-top: 0.5rem;
 }
 
 .modalBtn:hover {
-  background: #044e38;
+  background: var(--bg-accent-hover);
 }
 
 @media (max-width: 768px) {

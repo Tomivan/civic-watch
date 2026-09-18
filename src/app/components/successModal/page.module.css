@@ -1,0 +1,157 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--bg-surface);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: modalIn 0.2s ease-out;
+  transition: background-color 0.3s;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--bg-accent-soft);
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.modal h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s;
+}
+
+.modal p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  transition: color 0.3s;
+}
+
+.refBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.refBox span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.refBox strong {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: color 0.3s;
+}
+
+.homeBtn {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  background: var(--bg-accent-strong);
+  color: var(--bg-surface);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, color 0.3s;
+  margin-top: 0.5rem;
+}
+
+.homeBtn:hover {
+  background: var(--bg-accent-hover);
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0.75rem;
+  }
+
+  .modal {
+    padding: 1.75rem 1.25rem;
+    border-radius: 14px;
+    gap: 0.85rem;
+  }
+
+  .iconWrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .modal h2 {
+    font-size: 1.1rem;
+  }
+
+  .modal p {
+    font-size: 0.85rem;
+  }
+
+  .refBox {
+    padding: 0.65rem 1rem;
+  }
+
+  .refBox strong {
+    font-size: 1rem;
+  }
+
+  .homeBtn {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+}

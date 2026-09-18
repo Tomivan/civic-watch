@@ -1,0 +1,67 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 0.75rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.75rem;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.stepActive {
+  background: var(--bg-accent-soft);
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  background: var(--bg-surface);
+  transition: all 0.2s ease;
+}
+
+.stepActive .stepNumber {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--bg-surface);
+}
+
+.stepCompleted .stepNumber {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+.stepLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-faint);
+  transition: color 0.2s ease;
+}
+
+.stepActive .stepLabel {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.stepCompleted .stepLabel {
+  color: var(--text-secondary);
+}

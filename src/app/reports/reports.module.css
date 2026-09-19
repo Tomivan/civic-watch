@@ -179,3 +179,11 @@
   font-size: 0.85rem;
   color: #065f46;
 }
+
+.signInPrompt {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+}

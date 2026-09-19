@@ -1,10 +1,18 @@
+"use client";
+
 import Image from 'next/image';
 import ShieldIcon from '../../../../public/assets/images/shield.svg';
 import EyeOffIcon from '../../../../public/assets/images/eye-off.svg';
 import LockIcon from '../../../../public/assets/images/lock.svg';
-import styles from './page.module.css';
+import styles from './privacyCard.module.css';
 
-const PrivacyCard = () => (
+interface Props {
+  anonymous: boolean;
+  onChange: (value: boolean) => void;
+  locked?: boolean;
+}
+
+const PrivacyCard = ({ anonymous, onChange, locked }: Props) => (
   <div className={styles.privacyCard}>
     <div className={styles.privacyHeader}>
       <Image src={ShieldIcon} alt="Shield" width={16} height={16} />
@@ -12,12 +20,23 @@ const PrivacyCard = () => (
     </div>
     <div className={styles.privacyBody}>
       <div className={styles.toggleRow}>
-        <div className={styles.toggleSwitch}>
-          <div className={styles.toggleKnob} />
-        </div>
+        <button
+          type="button"
+          className={`${styles.toggleSwitch} ${anonymous ? styles.toggleOn : ''}`}
+          onClick={() => !locked && onChange(!anonymous)}
+          disabled={locked}
+          aria-pressed={anonymous}
+          aria-label="Toggle anonymous submission"
+        >
+          <span className={styles.toggleKnob} />
+        </button>
         <div className={styles.toggleText}>
           <strong>Submit Anonymously</strong>
-          <p>Your identity will be hidden from the public dashboard.</p>
+          <p>
+            {locked
+              ? 'Automatically enabled for Personal Safety / GBV reports.'
+              : 'Your identity will be hidden from the public dashboard.'}
+          </p>
         </div>
       </div>
       <div className={styles.privacyDivider} />

@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, KeyboardEvent, useEffect, MouseEvent } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -14,30 +15,26 @@ import Light from '../../../../public/assets/images/light.svg';
 import Add from '../../../../public/assets/images/add.svg';
 import Notifications from '../notifications/notifications.component';
 import HowItWorks from '../howItWorks/howItWorks.component';
+import { useAuthStore } from '../../store/authStore';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
+  const router = useRouter();
+  const { user, isAdmin, logout } = useAuthStore();
+
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const router = useRouter();
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
+    if (isDarkMode) document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
   }, [isDarkMode]);
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -54,16 +51,9 @@ const Navbar = () => {
     }
   };
 
-  const handleOverlayClick = (
-    e: MouseEvent<HTMLDivElement>,
-    closeFn: () => void
-  ) => {
-    if (e.target === e.currentTarget) {
-      closeFn();
-    }
+  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>, close: () => void) => {
+    if (e.target === e.currentTarget) close();
   };
-
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
@@ -79,14 +69,14 @@ const Navbar = () => {
         </div>
 
         <div className={styles.links}>
-          <a href="/">
+          <Link href="/">
             <Image src={Issues} alt="Public Issues" width={20} height={20} className={styles.linkIcon} />
             <span>Public Issues</span>
-          </a>
-          <a href="/reports">
+          </Link>
+          <Link href="/reports">
             <Image src={Reports} alt="My Reports" width={20} height={20} className={styles.linkIcon} />
             <span>My Reports</span>
-          </a>
+          </Link>
         </div>
 
         <input
@@ -133,12 +123,28 @@ const Navbar = () => {
           </button>
         </div>
 
-        <a href="/report-incident" className={styles.reportLink}>
+        {user ? (
+          <div className={styles.userMenu}>
+            <span className={styles.userEmail} title={user.email ?? ''}>
+              {isAdmin ? '🛡️ ' : ''}
+              {user.email}
+            </span>
+            <button className={styles.signOutBtn} onClick={logout}>
+              Sign out
+            </button>
+          </div>
+        ) : (
+          <Link href="/signin" className={styles.signInBtn}>
+            Sign in
+          </Link>
+        )}
+
+        <Link href="/report-incident" className={styles.reportLink}>
           <button className={styles.addButton}>
             <Image src={Add} alt="Add Report" width={20} height={20} className={styles.addIcon} />
             <span>Report Incident</span>
           </button>
-        </a>
+        </Link>
 
         <button
           type="button"
@@ -151,7 +157,7 @@ const Navbar = () => {
       </nav>
 
       {isMobileMenuOpen && (
-        <div className={styles.mobileOverlay} onClick={closeMobileMenu}>
+        <div className={styles.mobileOverlay} onClick={() => setIsMobileMenuOpen(false)}>
           <div className={styles.mobileDrawer} onClick={(e) => e.stopPropagation()}>
             <div className={styles.mobileDrawerHeader}>
               <div className={styles.logo}>
@@ -165,7 +171,7 @@ const Navbar = () => {
               <button
                 type="button"
                 className={styles.closeBtn}
-                onClick={closeMobileMenu}
+                onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
                 <FontAwesomeIcon icon={faXmark} />
@@ -182,14 +188,14 @@ const Navbar = () => {
             />
 
             <div className={styles.mobileLinks}>
-              <a href="/" onClick={closeMobileMenu}>
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <Image src={Issues} alt="Public Issues" width={20} height={20} className={styles.linkIcon} />
                 <span>Public Issues</span>
-              </a>
-              <a href="/reports" onClick={closeMobileMenu}>
+              </Link>
+              <Link href="/reports" onClick={() => setIsMobileMenuOpen(false)}>
                 <Image src={Reports} alt="My Reports" width={20} height={20} className={styles.linkIcon} />
                 <span>My Reports</span>
-              </a>
+              </Link>
             </div>
 
             <div className={styles.mobileIcons}>
@@ -198,10 +204,10 @@ const Navbar = () => {
                 className={styles.mobileIconButton}
                 onClick={() => {
                   setIsNotificationsOpen(true);
-                  closeMobileMenu();
+                  setIsMobileMenuOpen(false);
                 }}
               >
-                <Image src={NotificationsIcon} alt="Notifications" width={22} height={22} />
+                <Image src={NotificationsIcon} alt="Notifications" width={20} height={20} />
                 <span>Notifications</span>
               </button>
 
@@ -210,7 +216,7 @@ const Navbar = () => {
                 className={styles.mobileIconButton}
                 onClick={() => {
                   setIsHowItWorksOpen(true);
-                  closeMobileMenu();
+                  setIsMobileMenuOpen(false);
                 }}
               >
                 <FontAwesomeIcon icon={faCog} />
@@ -225,17 +231,41 @@ const Navbar = () => {
                 <Image
                   src={isDarkMode ? Light : Dark}
                   alt={isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                  width={22}
-                  height={22}
+                  width={20}
+                  height={20}
                 />
                 <span>{isDarkMode ? 'Light mode' : 'Dark mode'}</span>
               </button>
             </div>
 
-            <a href="/report-incident" className={styles.mobileReportLink} onClick={closeMobileMenu}>
+            {user ? (
+              <div className={styles.mobileUserBlock}>
+                <span className={styles.userEmail} title={user.email ?? ''}>
+                  {isAdmin ? '🛡️ ' : ''}
+                  {user.email}
+                </span>
+                <button className={styles.signOutBtn} onClick={logout}>
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/signin"
+                className={styles.mobileSignInLink}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Sign in
+              </Link>
+            )}
+
+            <Link
+              href="/report-incident"
+              className={styles.mobileReportLink}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               <Image src={Add} alt="Add Report" width={20} height={20} className={styles.addIcon} />
               Report Incident
-            </a>
+            </Link>
           </div>
         </div>
       )}

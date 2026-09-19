@@ -2,29 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Image from 'next/image';
 import Back from '../../../../public/assets/images/back.svg';
 import Shield from '../../../../public/assets/images/shield.svg';
 import Dark from '../../../../public/assets/images/dark.svg';
 import Light from '../../../../public/assets/images/light.svg';
 import Logo from '../../../../public/assets/images/logo.svg';
-import styles from './page.module.css';
+import { useAuthStore } from '../../store/authStore';
+import styles from './reportNav.module.css';
 
 const ReportNav = () => {
   const router = useRouter();
+  const { user, isAdmin } = useAuthStore();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark') {
       setIsDarkMode(true);
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   }, []);
-
-  const handleBack = () => {
-    router.push('/');
-  };
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => {
@@ -47,7 +46,7 @@ const ReportNav = () => {
           type="button"
           className={styles.backBtn}
           aria-label="Go back to home"
-          onClick={handleBack}
+          onClick={() => router.push('/')}
         >
           <Image src={Back} alt="Go back" width={20} height={20} />
         </button>
@@ -62,6 +61,18 @@ const ReportNav = () => {
           <Image src={Shield} alt="Shield" width={16} height={16} />
           Encrypted
         </span>
+
+        {user ? (
+          <span className={styles.userEmail} title={user.email ?? ''}>
+            {isAdmin ? '🛡️ ' : ''}
+            {user.email}
+          </span>
+        ) : (
+          <Link href="/signin" className={styles.signInBtn}>
+            Sign in
+          </Link>
+        )}
+
         <button
           type="button"
           className={styles.iconBtn}
@@ -75,6 +86,7 @@ const ReportNav = () => {
             height={20}
           />
         </button>
+
         <div className={styles.brandGroup}>
           <div className={styles.brandIcon}>
             <Image src={Logo} alt="Civic Watch Logo" width={28} height={28} />

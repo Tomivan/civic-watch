@@ -345,8 +345,44 @@
   z-index: 999;
   padding: 1rem;
 }
+.userMenu { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.75rem; 
+}
+.userEmail {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.signOutBtn, .signInBtn {
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transition: background 0.2s;
+}
+.signInBtn { 
+    background: var(--bg-accent-strong); 
+    color: var(--bg-surface); border: none; 
+}
+.signInBtn:hover { 
+    background: var(--bg-accent-hover); 
+}
+.signOutBtn:hover { 
+    background: var(--bg-subtle); 
+}
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .navbar {
     padding: 1em 1.25em;
     gap: 0.75rem;
@@ -361,7 +397,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar {
     padding: 0.85em 1em;
   }
@@ -377,4 +413,7 @@
     display: flex;
     margin-left: auto;
   }
+  .userMenu, .signInBtn, .signOutBtn { 
+    display: none; 
+}
 }

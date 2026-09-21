@@ -36,6 +36,11 @@
   line-height: 1.5;
 }
 
+.locationIcon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
 .filterGroup {
   display: flex;
   flex-wrap: wrap;
@@ -209,6 +214,11 @@
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.05em;
+}
+
+.timerIcon, .highIcon, .residentsIcon, .updatesIcon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .tagHigh {

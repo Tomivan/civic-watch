@@ -95,7 +95,7 @@ const Navbar = () => {
             onClick={() => setIsNotificationsOpen(true)}
             aria-label="Open notifications"
           >
-            <Image src={NotificationsIcon} alt="Notifications" width={40} height={40} className={styles.icon} />
+            <Image src={NotificationsIcon} alt="Notifications" width={20} height={20} className={styles.icon} />
           </button>
 
           <button
@@ -116,8 +116,8 @@ const Navbar = () => {
             <Image
               src={isDarkMode ? Light : Dark}
               alt={isDarkMode ? 'Light Mode' : 'Dark Mode'}
-              width={40}
-              height={40}
+              width={20}
+              height={20}
               className={styles.icon}
             />
           </button>

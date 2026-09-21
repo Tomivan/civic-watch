@@ -361,25 +361,12 @@
 }
 .signOutBtn, .signInBtn {
   padding: 0.5rem 0.85rem;
-  border-radius: 8px;
   font-family: inherit;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid var(--border-strong);
-  background: var(--bg-surface);
   color: var(--text-primary);
-  transition: background 0.2s;
-}
-.signInBtn { 
-    background: var(--bg-accent-strong); 
-    color: var(--bg-surface); border: none; 
-}
-.signInBtn:hover { 
-    background: var(--bg-accent-hover); 
-}
-.signOutBtn:hover { 
-    background: var(--bg-subtle); 
+  text-decoration: none;
 }
 
 @media (max-width: 1023px) {

@@ -122,7 +122,7 @@ const SignInPage = () => {
         </form>
 
         <div className={styles.footer}>
-          <ShieldIcon width={14} height={14} />
+          <Image src={ShieldIcon} alt="Shield" width={14} height={14} />
           <span>Admin credentials are issued by CivicWatch management.</span>
         </div>
       </div>

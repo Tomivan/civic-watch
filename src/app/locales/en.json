@@ -1,0 +1,203 @@
+{
+  "common": {
+    "appName": "CivicWatch",
+    "tagline": "Lagos State Civic Reporting",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "continue": "Continue",
+    "submit": "Submit",
+    "close": "Close",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "search": "Search",
+    "optional": "Optional",
+    "required": "Required",
+    "justNow": "just now"
+  },
+  "nav": {
+    "publicIssues": "Public Issues",
+    "myReports": "My Reports",
+    "reportIncident": "Report Incident",
+    "notifications": "Notifications",
+    "howItWorks": "How it works",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "searchPlaceholder": "Search reports, locations, …",
+    "language": "Language"
+  },
+  "signIn": {
+    "title": "Sign in",
+    "subtitle": "Track reports, receive updates, and manage civic issues.",
+    "continueWithGoogle": "Continue with Google",
+    "orAdminDivider": "or sign in as admin",
+    "adminEmail": "Admin email",
+    "adminPassword": "Password",
+    "adminSubmit": "Sign in as admin",
+    "adminNote": "Admin credentials are issued by CivicWatch management.",
+    "errors": {
+      "google": "Google sign-in failed",
+      "admin": "Admin sign-in failed",
+      "notAdmin": "Not an admin account"
+    }
+  },
+  "wizard": {
+    "stepLabel": "Step {current} of {total}",
+    "steps": {
+      "category": "Category",
+      "description": "Description",
+      "location": "Location",
+      "media": "Media & privacy"
+    },
+    "category": {
+      "title": "What kind of issue are you reporting?",
+      "subtitle": "This decides which Lagos State agency receives your report first.",
+      "infrastructure": {
+        "title": "Infrastructure",
+        "description": "Roads, bridges, streetlights, public buildings"
+      },
+      "environment": {
+        "title": "Environment",
+        "description": "Drainage, flooding, air and water pollution"
+      },
+      "sanitation": {
+        "title": "Sanitation",
+        "description": "Waste collection, illegal dumping, public hygiene"
+      },
+      "safety": {
+        "title": "Personal Safety / GBV",
+        "description": "Handled on a restricted, confidential channel"
+      },
+      "restrictedBadge": "RESTRICTED CHANNEL"
+    },
+    "description": {
+      "title": "Describe the incident",
+      "subtitle": "Be specific about what is happening and the nearest landmark.",
+      "shortTitle": "Short title",
+      "shortPlaceholder": "Summarise the issue in a few words",
+      "shortHelper": "A one-line summary, e.g. \"Blocked drainage causing flooding\".",
+      "fullLabel": "Full description",
+      "fullPlaceholder": "Describe what happened and where…",
+      "charCount": "{count}/600 characters · minimum 30",
+      "guidance": {
+        "duration": "Include how long the issue has existed.",
+        "affected": "Mention if people, homes or businesses are already affected.",
+        "privacy": "Do not include other people's personal details."
+      }
+    },
+    "location": {
+      "title": "Where is this happening?",
+      "subtitle": "An accurate location lets the assigned agency dispatch to the right street.",
+      "gpsTitle": "Use current GPS location in Lagos",
+      "gpsSubtitle": "Coordinates are attached to the report, never to your identity.",
+      "addressLabel": "Street address or description",
+      "addressPlaceholder": "e.g. 14 Allen Avenue, near Computer Village",
+      "addressHelper": "Street name and number, or the closest junction.",
+      "areaLabel": "Area / LGA",
+      "landmarkLabel": "Nearest landmark",
+      "landmarkPlaceholder": "e.g. Ikeja City Mall",
+      "landmarkHelper": "Optional but speeds up dispatch.",
+      "mapLabel": "Location preview",
+      "mapDescription": "Pin placed in {area}, Lagos State."
+    },
+    "media": {
+      "title": "Add photos or video",
+      "subtitle": "Optional, but evidence raises the urgency score and speeds up verification.",
+      "dropTitle": "Attach evidence from your device",
+      "dropSubtitle": "JPG, PNG, HEIC, MP4 · location metadata is stripped",
+      "takePhoto": "Take photo",
+      "uploadPhoto": "Upload photo",
+      "uploadVideo": "Upload video",
+      "submittingAs": "Submitting as {mode} · {category} · {area}",
+      "modes": {
+        "anonymous": "anonymous",
+        "identified": "identified"
+      },
+      "submitSecure": "Submit Report Securely"
+    }
+  },
+  "privacy": {
+    "title": "Privacy",
+    "anonymousLabel": "Submit Anonymously",
+    "anonymousHelp": "Your identity will be hidden from the public dashboard.",
+    "lockedHelp": "Automatically enabled for Personal Safety / GBV reports.",
+    "noPii": "No name, phone number or email is attached to this report.",
+    "encrypted": "Submission is encrypted in transit, and photo location metadata is stripped."
+  },
+  "success": {
+    "title": "Report Submitted Successfully",
+    "body": "Your report has been securely submitted. Response teams will review shortly.",
+    "referenceId": "Reference ID",
+    "returnHome": "Return to Home",
+    "nextSteps": {
+      "title": "What happens next",
+      "step1": "The report is routed to {agency}.",
+      "step2": "You can expect an initial review within {slaHours} hours.",
+      "step3": "You will be notified when the status changes.",
+      "escalation": "If nothing changes within {escalationHours} hours, you can escalate.",
+      "contactAgency": "Contact {agency}",
+      "callAgency": "Call {phone}",
+      "visitWebsite": "Visit website",
+      "shareReference": "Share reference",
+      "copyReference": "Copy reference ID"
+    }
+  },
+  "issues": {
+    "title": "Civic Issues Near You",
+    "subtitle": "Open reports across {region}, routed to the responsible agency.",
+    "show": "Show:",
+    "loading": "Loading…",
+    "empty": "No open reports.",
+    "page": "Page {current}",
+    "previous": "Previous",
+    "next": "Next",
+    "verified": "Verified",
+    "awaitingResponse": "Awaiting response",
+    "verifiedBy": "Verified by {count} residents",
+    "lastUpdated": "Last updated {time}",
+    "escalate": "Escalate"
+  },
+  "reports": {
+    "title": "My Reports",
+    "subtitle": "Reports filed from this account.",
+    "signInPrompt": "Sign in to view your reports and receive status updates.",
+    "empty": "You haven't filed any reports yet.",
+    "signIn": "Sign in"
+  },
+  "howItWorks": {
+    "title": "How CivicWatch Works",
+    "subtitle": "Reports are triaged and routed to the responsible Lagos State agency.",
+    "step1Title": "Report in under two minutes.",
+    "step1Body": "Pick a category, describe the issue, drop a location and attach photos or video.",
+    "step2Title": "Keep your reference ID.",
+    "step2Body": "Every report returns an ID such as LGS-84920 that works without an account.",
+    "step3Title": "Track the response.",
+    "step3Body": "Received → AI triage → agency assigned → resolution.",
+    "step4Title": "Sensitive reports stay private.",
+    "step4Body": "Personal Safety / GBV reports are handled on a restricted channel and never appear in the public feed.",
+    "emergency": "Emergency? Call {primary} or {secondary} as well as filing a report."
+  },
+  "statuses": {
+    "open": "Open",
+    "in-progress": "In Progress",
+    "resolved": "Resolved"
+  },
+  "priorities": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High"
+  },
+  "offline": {
+    "banner": "You're offline. Reports will sync when you reconnect.",
+    "queued": "{count} report(s) queued"
+  },
+  "errors": {
+    "network": "Network error. Please check your connection.",
+    "auth": "You need to sign in first.",
+    "permission": "You don't have permission to do that.",
+    "unknown": "Something went wrong. Please try again."
+  }
+}

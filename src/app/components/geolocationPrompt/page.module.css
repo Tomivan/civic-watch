@@ -1,0 +1,86 @@
+.prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: var(--bg-accent-soft);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.text strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  margin-bottom: 0.2rem;
+}
+
+.text p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-accent);
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.primary,
+.ghost {
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.primary {
+  background: var(--bg-accent-strong);
+  color: var(--bg-surface);
+  border: none;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--bg-accent-hover);
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid var(--border-accent);
+  color: var(--text-accent);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--bg-surface);
+}
+
+.primary:disabled,
+.ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

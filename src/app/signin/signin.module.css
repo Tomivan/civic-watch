@@ -10,7 +10,7 @@
 
 .card {
   width: 100%;
-  max-width: 420px;
+  max-width: 450px;
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: 16px;
@@ -138,7 +138,7 @@
 }
 
 .input {
-  width: 100%;
+  width: 92%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--border-strong);
   border-radius: 8px;
@@ -197,6 +197,10 @@
   font-size: 0.75rem;
   color: var(--text-muted);
   transition: border-color 0.3s, color 0.3s;
+}
+
+.card > :global(.consentWrap) + * {
+  margin-top: 1rem;
 }
 
 @media (max-width: 480px) {

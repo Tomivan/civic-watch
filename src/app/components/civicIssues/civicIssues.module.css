@@ -29,6 +29,14 @@
   font-size: 0.95rem;
   margin: 0;
   transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.cardHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .subtitle {
@@ -161,19 +169,6 @@
   gap: 0.75rem;
 }
 
-.iconBox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: var(--bg-accent-soft);
-  border-radius: 6px;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  transition: background-color 0.3s;
-}
-
 .cardTitleGroup h3 {
   margin: 0;
   font-size: 1.1rem;
@@ -183,6 +178,9 @@
 }
 
 .statusBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   background: var(--bg-accent-soft);
   color: var(--text-accent);
   padding: 0.25rem 0.75rem;
@@ -195,9 +193,19 @@
 }
 
 .cardMeta {
+  display: flex;
+  align-items: center;
   margin: 0;
   font-size: 0.85rem;
   color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
   transition: color 0.3s;
 }
 
@@ -209,6 +217,8 @@
 
 .tagHigh,
 .tagEnv {
+  display: inline-flex;
+  align-items: center;
   padding: 0.25rem 0.6rem;
   border-radius: 4px;
   font-size: 0.7rem;
@@ -216,7 +226,10 @@
   letter-spacing: 0.05em;
 }
 
-.timerIcon, .highIcon, .residentsIcon, .updatesIcon {
+.timerIcon,
+.highIcon,
+.residentsIcon,
+.updatesIcon {
   margin-right: 0.5rem;
   vertical-align: middle;
 }
@@ -252,6 +265,11 @@
   color: var(--text-muted);
   flex-wrap: wrap;
   transition: color 0.3s;
+}
+
+.footerStats span {
+  display: flex;
+  align-items: center;
 }
 
 .agency {
@@ -412,64 +430,6 @@
 .textRed {
   color: var(--accent-danger);
   transition: color 0.3s;
-}
-.pageWrapper { 
-    min-height: 100vh; 
-    background: var(--bg-page); 
-}
-.pageSizeBar {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin: 1rem 0;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-.pageSizeBtn, .pageSizeActive {
-  padding: 0.35rem 0.75rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-default);
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.pageSizeActive {
-  background: var(--bg-accent-strong);
-  color: var(--bg-surface);
-  border-color: var(--bg-accent-strong);
-}
-.statusSelect {
-  padding: 0.35rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-strong);
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.pagination button {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-default);
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-.pagination button:disabled { 
-    opacity: 0.4; 
-    cursor: not-allowed; 
 }
 
 @media (max-width: 1024px) {

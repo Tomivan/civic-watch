@@ -1,0 +1,50 @@
+{
+  "categories": [
+    {
+      "id": "infrastructure",
+      "icon": "infrastructure",
+      "restricted": false,
+      "defaultPriority": "medium"
+    },
+    {
+      "id": "environment",
+      "icon": "environment",
+      "restricted": false,
+      "defaultPriority": "medium"
+    },
+    {
+      "id": "sanitation",
+      "icon": "sanitation",
+      "restricted": false,
+      "defaultPriority": "medium"
+    },
+    {
+      "id": "safety",
+      "icon": "safety",
+      "restricted": true,
+      "defaultPriority": "high"
+    }
+  ],
+  "statuses": [
+    {
+      "id": "open",
+      "color": "#dc2626",
+      "order": 1
+    },
+    {
+      "id": "in-progress",
+      "color": "#2563eb",
+      "order": 2
+    },
+    {
+      "id": "resolved",
+      "color": "#059669",
+      "order": 3
+    }
+  ],
+  "priorities": [
+    { "id": "low", "color": "#059669" },
+    { "id": "medium", "color": "#f59e0b" },
+    { "id": "high", "color": "#dc2626" }
+  ]
+}

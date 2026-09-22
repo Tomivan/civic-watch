@@ -30,6 +30,17 @@
   gap: 1.5rem;
 }
 
+.errorBanner {
+  padding: 0.75rem 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: var(--accent-danger);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 767px) {
   .container {
     grid-template-columns: 1fr;

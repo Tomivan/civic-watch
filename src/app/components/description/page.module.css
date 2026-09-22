@@ -354,6 +354,12 @@
 .continueBtn:hover {
   background: var(--bg-accent-hover);
 }
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 @media (max-width: 767px) {
   .container {

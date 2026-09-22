@@ -124,6 +124,16 @@
   transition: color 0.3s;
 }
 
+.serviceHours {
+  margin-top: 0.5rem !important;
+  font-size: 0.75rem !important;
+  color: var(--text-muted) !important;
+  text-align: center;
+}
+
+.emergencySection > * + * {
+  margin-top: 0.75rem;
+}
 @media (max-width: 640px) {
   .container {
     max-width: 100%;

@@ -1,0 +1,68 @@
+.wrapper {
+  position: relative;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 40px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.3s;
+}
+
+.button:hover {
+  background: var(--bg-subtle);
+}
+
+.code {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+}
+
+.item {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.item:hover {
+  background: var(--bg-subtle);
+}
+
+.itemActive {
+  background: var(--bg-accent-soft);
+  color: var(--text-accent);
+  font-weight: 600;
+}

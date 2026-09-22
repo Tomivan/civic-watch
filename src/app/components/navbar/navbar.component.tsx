@@ -16,7 +16,10 @@ import Add from '../../../../public/assets/images/add.svg';
 import Notifications from '../notifications/notifications.component';
 import HowItWorks from '../howItWorks/howItWorks.component';
 import { useAuthStore } from '../../store/authStore';
+import { t } from '../../lib/i18n';
 import styles from './navbar.module.css';
+import LanguageSwitcher from '../languageSwitcher/languageSwitcher.component';
+
 
 const Navbar = () => {
   const router = useRouter();
@@ -26,7 +29,16 @@ const Navbar = () => {
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark') {
+      setIsDarkMode(true);
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }, []);
 
   useEffect(() => {
     if (isDarkMode) document.documentElement.setAttribute('data-theme', 'dark');
@@ -39,6 +51,17 @@ const Navbar = () => {
       document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const update = () => setIsOnline(navigator.onLine);
+    update();
+    window.addEventListener('online', update);
+    window.addEventListener('offline', update);
+    return () => {
+      window.removeEventListener('online', update);
+      window.removeEventListener('offline', update);
+    };
+  }, []);
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -58,66 +81,71 @@ const Navbar = () => {
   return (
     <>
       <nav className={styles.navbar}>
-        <div className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <Image src={Logo} alt="Civic Watch Logo" width={50} height={50} />
           <div className={styles.logoText}>
             <h1 className={styles.logoTitle}>
               Civic <span className={styles.logoHighlight}>Watch</span>
             </h1>
-            <p>Lagos State Civic Reporting</p>
+            <p>{t('common.tagline')}</p>
           </div>
-        </div>
+        </Link>
 
         <div className={styles.links}>
           <Link href="/">
-            <Image src={Issues} alt="Public Issues" width={20} height={20} className={styles.linkIcon} />
-            <span>Public Issues</span>
+            <Image src={Issues} alt="" width={20} height={20} className={styles.linkIcon} />
+            <span>{t('nav.publicIssues')}</span>
           </Link>
           <Link href="/reports">
-            <Image src={Reports} alt="My Reports" width={20} height={20} className={styles.linkIcon} />
-            <span>My Reports</span>
+            <Image src={Reports} alt="" width={20} height={20} className={styles.linkIcon} />
+            <span>{t('nav.myReports')}</span>
           </Link>
         </div>
 
-        <input
-          type="text"
-          placeholder="Search reports, locations, ..."
-          className={styles.search}
-          value={searchQuery}
-          onChange={handleSearch}
-          onKeyDown={handleSearchSubmit}
-        />
+        <div className={styles.searchWrapper}>
+          <input
+            type="text"
+            placeholder={t('nav.searchPlaceholder')}
+            className={styles.search}
+            value={searchQuery}
+            onChange={handleSearch}
+            onKeyDown={handleSearchSubmit}
+          />
+          {!isOnline && <span className={styles.offlineDot} aria-hidden />}
+        </div>
 
         <div className={styles.icons}>
           <button
             type="button"
             className={styles.iconButton}
             onClick={() => setIsNotificationsOpen(true)}
-            aria-label="Open notifications"
+            aria-label={t('nav.notifications')}
           >
-            <Image src={NotificationsIcon} alt="Notifications" width={20} height={20} className={styles.icon} />
+            <Image src={NotificationsIcon} alt="" width={40} height={40} className={styles.icon} />
           </button>
 
           <button
             type="button"
             className={styles.iconButton}
             onClick={() => setIsHowItWorksOpen(true)}
-            aria-label="How it works"
+            aria-label={t('nav.howItWorks')}
           >
             <FontAwesomeIcon icon={faCog} size="1x" className={styles.icon1} />
           </button>
+
+          <LanguageSwitcher />
 
           <button
             type="button"
             className={styles.iconButton}
             onClick={() => setIsDarkMode((prev) => !prev)}
-            aria-label="Toggle dark mode"
+            aria-label={isDarkMode ? t('nav.lightMode') : t('nav.darkMode')}
           >
             <Image
               src={isDarkMode ? Light : Dark}
-              alt={isDarkMode ? 'Light Mode' : 'Dark Mode'}
-              width={20}
-              height={20}
+              alt=""
+              width={40}
+              height={40}
               className={styles.icon}
             />
           </button>
@@ -130,19 +158,19 @@ const Navbar = () => {
               {user.email}
             </span>
             <button className={styles.signOutBtn} onClick={logout}>
-              Sign out
+              {t('common.signOut')}
             </button>
           </div>
         ) : (
           <Link href="/signin" className={styles.signInBtn}>
-            Sign in
+            {t('common.signIn')}
           </Link>
         )}
 
         <Link href="/report-incident" className={styles.reportLink}>
           <button className={styles.addButton}>
-            <Image src={Add} alt="Add Report" width={20} height={20} className={styles.addIcon} />
-            <span>Report Incident</span>
+            <Image src={Add} alt="" width={20} height={20} className={styles.addIcon} />
+            <span>{t('nav.reportIncident')}</span>
           </button>
         </Link>
 
@@ -155,6 +183,12 @@ const Navbar = () => {
           <FontAwesomeIcon icon={faBars} />
         </button>
       </nav>
+
+      {!isOnline && (
+        <div className={styles.offlineBanner} role="status">
+          {t('offline.banner')}
+        </div>
+      )}
 
       {isMobileMenuOpen && (
         <div className={styles.mobileOverlay} onClick={() => setIsMobileMenuOpen(false)}>
@@ -172,7 +206,7 @@ const Navbar = () => {
                 type="button"
                 className={styles.closeBtn}
                 onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
+                aria-label={t('common.close')}
               >
                 <FontAwesomeIcon icon={faXmark} />
               </button>
@@ -180,7 +214,7 @@ const Navbar = () => {
 
             <input
               type="text"
-              placeholder="Search reports, locations, ..."
+              placeholder={t('nav.searchPlaceholder')}
               className={styles.mobileSearch}
               value={searchQuery}
               onChange={handleSearch}
@@ -189,12 +223,12 @@ const Navbar = () => {
 
             <div className={styles.mobileLinks}>
               <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
-                <Image src={Issues} alt="Public Issues" width={20} height={20} className={styles.linkIcon} />
-                <span>Public Issues</span>
+                <Image src={Issues} alt="" width={20} height={20} className={styles.linkIcon} />
+                <span>{t('nav.publicIssues')}</span>
               </Link>
               <Link href="/reports" onClick={() => setIsMobileMenuOpen(false)}>
-                <Image src={Reports} alt="My Reports" width={20} height={20} className={styles.linkIcon} />
-                <span>My Reports</span>
+                <Image src={Reports} alt="" width={20} height={20} className={styles.linkIcon} />
+                <span>{t('nav.myReports')}</span>
               </Link>
             </div>
 
@@ -207,8 +241,8 @@ const Navbar = () => {
                   setIsMobileMenuOpen(false);
                 }}
               >
-                <Image src={NotificationsIcon} alt="Notifications" width={20} height={20} />
-                <span>Notifications</span>
+                <Image src={NotificationsIcon} alt="" width={22} height={22} />
+                <span>{t('nav.notifications')}</span>
               </button>
 
               <button
@@ -220,7 +254,7 @@ const Navbar = () => {
                 }}
               >
                 <FontAwesomeIcon icon={faCog} />
-                <span>How it works</span>
+                <span>{t('nav.howItWorks')}</span>
               </button>
 
               <button
@@ -230,11 +264,11 @@ const Navbar = () => {
               >
                 <Image
                   src={isDarkMode ? Light : Dark}
-                  alt={isDarkMode ? 'Light Mode' : 'Dark Mode'}
-                  width={20}
-                  height={20}
+                  alt=""
+                  width={22}
+                  height={22}
                 />
-                <span>{isDarkMode ? 'Light mode' : 'Dark mode'}</span>
+                <span>{isDarkMode ? t('nav.lightMode') : t('nav.darkMode')}</span>
               </button>
             </div>
 
@@ -245,7 +279,7 @@ const Navbar = () => {
                   {user.email}
                 </span>
                 <button className={styles.signOutBtn} onClick={logout}>
-                  Sign out
+                  {t('common.signOut')}
                 </button>
               </div>
             ) : (
@@ -254,7 +288,7 @@ const Navbar = () => {
                 className={styles.mobileSignInLink}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Sign in
+                {t('common.signIn')}
               </Link>
             )}
 
@@ -263,8 +297,8 @@ const Navbar = () => {
               className={styles.mobileReportLink}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Image src={Add} alt="Add Report" width={20} height={20} className={styles.addIcon} />
-              Report Incident
+              <Image src={Add} alt="" width={20} height={20} className={styles.addIcon} />
+              {t('nav.reportIncident')}
             </Link>
           </div>
         </div>

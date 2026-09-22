@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { createReport } from '../lib/report';
+import { buildReferenceId } from '../lib/report';
+import { CATEGORY_ROUTING, CATEGORY_SLA_HOURS, RESTRICTED_CATEGORIES } from '../config/constants';
+import { t } from '../lib/i18n';
 import ReportNav from '../components/reportNav/reportNav.component';
 import Category from '../components/category/category.component';
 import Description from '../components/description/description.component';
@@ -23,28 +26,53 @@ export interface ReportData {
   anonymous: boolean;
 }
 
+const DRAFT_KEY = 'civicwatch:draft';
+
+const emptyDraft: ReportData = {
+  category: '',
+  title: '',
+  description: '',
+  address: '',
+  area: 'Ikeja',
+  landmark: '',
+  anonymous: false,
+};
+
 const ReportIncidentPage = () => {
   const { user } = useAuthStore();
   const [currentStep, setCurrentStep] = useState(1);
   const [submittedId, setSubmittedId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [reportData, setReportData] = useState<ReportData>({
-    category: '',
-    title: '',
-    description: '',
-    address: '',
-    area: 'Ikeja',
-    landmark: '',
-    anonymous: false,
-  });
+  const [error, setError] = useState<string | null>(null);
+  const [reportData, setReportData] = useState<ReportData>(emptyDraft);
 
-  const isGBV = reportData.category === 'safety';
+  const isRestricted = RESTRICTED_CATEGORIES.includes(reportData.category);
 
   useEffect(() => {
-    if (isGBV && !reportData.anonymous) {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw) as ReportData;
+        setReportData({ ...emptyDraft, ...parsed });
+      }
+    } catch {
+      // ignore corrupt drafts
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(reportData));
+    } catch {
+      // quota errors are non-fatal
+    }
+  }, [reportData]);
+
+  useEffect(() => {
+    if (isRestricted && !reportData.anonymous) {
       setReportData((p) => ({ ...p, anonymous: true }));
     }
-  }, [isGBV, reportData.anonymous]);
+  }, [isRestricted, reportData.anonymous]);
 
   const updateData = (fields: Partial<ReportData>) =>
     setReportData((prev) => ({ ...prev, ...fields }));
@@ -53,9 +81,10 @@ const ReportIncidentPage = () => {
   const handleBack = () => setCurrentStep((p) => Math.max(p - 1, 1));
 
   const handleSubmit = async (mediaUrls: string[] = []) => {
+    setError(null);
     setSubmitting(true);
     try {
-      const anonymous = isGBV || reportData.anonymous;
+      const anonymous = isRestricted || reportData.anonymous;
       const id = await createReport({
         category: reportData.category,
         title: reportData.title,
@@ -64,14 +93,23 @@ const ReportIncidentPage = () => {
         area: reportData.area,
         landmark: reportData.landmark,
         anonymous,
-        restricted: isGBV,
+        restricted: isRestricted,
         userId: anonymous ? null : user?.uid ?? null,
         userEmail: anonymous ? null : user?.email ?? null,
         status: 'open',
-        priority: isGBV ? 'high' : 'medium',
+        priority: isRestricted ? 'high' : 'medium',
         mediaUrls,
       });
+
+      try {
+        localStorage.removeItem(DRAFT_KEY);
+      } catch {
+        // ignore
+      }
+
       setSubmittedId(id);
+    } catch (e: any) {
+      setError(e?.message ?? t('errors.unknown'));
     } finally {
       setSubmitting(false);
     }
@@ -80,15 +118,46 @@ const ReportIncidentPage = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <Category data={reportData} onUpdate={updateData} onNext={handleNext} />;
+        return (
+          <Category
+            data={reportData}
+            onUpdate={updateData}
+            onNext={handleNext}
+          />
+        );
       case 2:
-        return <Description data={reportData} onUpdate={updateData} onNext={handleNext} onBack={handleBack} />;
+        return (
+          <Description
+            data={reportData}
+            onUpdate={updateData}
+            onNext={handleNext}
+            onBack={handleBack}
+          />
+        );
       case 3:
-        return <Location data={reportData} onUpdate={updateData} onNext={handleNext} onBack={handleBack} />;
+        return (
+          <Location
+            data={reportData}
+            onUpdate={updateData}
+            onNext={handleNext}
+            onBack={handleBack}
+          />
+        );
       case 4:
-        return <Media data={reportData} onBack={handleBack} onSubmit={handleSubmit} submitting={submitting} />;
+        return (
+          <Media
+            data={reportData}
+            onBack={handleBack}
+            onSubmit={handleSubmit}
+            submitting={submitting}
+          />
+        );
     }
   };
+
+  const referenceId = submittedId ? buildReferenceId(submittedId) : null;
+  const routedAgencyIds = CATEGORY_ROUTING[reportData.category] ?? [];
+  const slaHours = CATEGORY_SLA_HOURS[reportData.category] ?? 72;
 
   return (
     <div className={styles.pageWrapper}>
@@ -99,13 +168,27 @@ const ReportIncidentPage = () => {
           <PrivacyCard
             anonymous={reportData.anonymous}
             onChange={(v) => updateData({ anonymous: v })}
-            locked={isGBV}
+            locked={isRestricted}
           />
         </aside>
-        <main className={styles.main}>{renderStep()}</main>
+        <main className={styles.main}>
+          {error && (
+            <div className={styles.errorBanner} role="alert">
+              {error}
+            </div>
+          )}
+          {renderStep()}
+        </main>
       </div>
 
-      {submittedId && <SuccessModal referenceId={submittedId} />}
+      {submittedId && referenceId && (
+        <SuccessModal
+          referenceId={referenceId}
+          category={reportData.category}
+          agencyId={routedAgencyIds[0]}
+          slaHours={slaHours}
+        />
+      )}
     </div>
   );
 };

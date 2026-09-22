@@ -1,0 +1,21 @@
+{
+  "default": {
+    "openHours": 24,
+    "inProgressHours": 72,
+    "resolvedHours": 168,
+    "escalationThresholdHours": 168
+  },
+  "overrides": {
+    "safety": {
+      "openHours": 12,
+      "escalationThresholdHours": 24
+    },
+    "environment": {
+      "escalationThresholdHours": 96
+    }
+  },
+  "reminders": {
+    "beforeEscalationHours": 24,
+    "afterSubmissionHours": 72
+  }
+}

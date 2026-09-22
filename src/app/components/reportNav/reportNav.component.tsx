@@ -10,7 +10,9 @@ import Dark from '../../../../public/assets/images/dark.svg';
 import Light from '../../../../public/assets/images/light.svg';
 import Logo from '../../../../public/assets/images/logo.svg';
 import { useAuthStore } from '../../store/authStore';
-import styles from './reportNav.module.css';
+import { t } from '../../lib/i18n';
+import styles from './page.module.css';
+import LanguageSwitcher from '../languageSwitcher/languageSwitcher.component';
 
 const ReportNav = () => {
   const router = useRouter();
@@ -51,8 +53,8 @@ const ReportNav = () => {
           <Image src={Back} alt="Go back" width={20} height={20} />
         </button>
         <div className={styles.logoText}>
-          <h1 className={styles.logoTitle}>Report an Incident</h1>
-          <p>Lagos State · CivicWatch intake</p>
+          <h1 className={styles.logoTitle}>{t('nav.reportIncident')}</h1>
+          <p>{t('common.tagline')} · {t('signIn.title')}</p>
         </div>
       </div>
 
@@ -69,19 +71,21 @@ const ReportNav = () => {
           </span>
         ) : (
           <Link href="/signin" className={styles.signInBtn}>
-            Sign in
+            {t('common.signIn')}
           </Link>
         )}
+
+        <LanguageSwitcher />
 
         <button
           type="button"
           className={styles.iconBtn}
-          aria-label="Toggle dark mode"
+          aria-label={t('nav.darkMode')}
           onClick={toggleDarkMode}
         >
           <Image
             src={isDarkMode ? Light : Dark}
-            alt={isDarkMode ? 'Light mode' : 'Dark mode'}
+            alt={isDarkMode ? t('nav.lightMode') : t('nav.darkMode')}
             width={20}
             height={20}
           />

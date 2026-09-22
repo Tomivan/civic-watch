@@ -1,0 +1,23 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.due {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+}
+
+[data-theme='dark'] .due {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+}

@@ -1,9 +1,16 @@
+"use client";
+
 import { MouseEvent } from 'react';
+import { t } from '../../lib/i18n';
+import ContactLinks from '../contactLinks/contactLinks.component';
+import { EMERGENCY_NUMBERS, REGION, AGENCIES } from '../../config/constants';
 import styles from './page.module.css';
 
 interface HowItWorksProps {
   onClose: () => void;
 }
+
+const primaryAgency = AGENCIES[0];
 
 const HowItWorks = ({ onClose }: HowItWorksProps) => {
   const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -17,22 +24,52 @@ const HowItWorks = ({ onClose }: HowItWorksProps) => {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
-            <h1>How CivicWatch Works</h1>
-            <p>Reports are triaged and routed to the responsible Lagos State agency.</p>
+            <h1>{t('howItWorks.title')}</h1>
+            <p>{t('howItWorks.subtitle')}</p>
           </div>
-          <button type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close">
+          <button
+            type="button"
+            className={styles.closeBtn}
+            onClick={onClose}
+            aria-label={t('common.close')}
+          >
             ✕
           </button>
         </div>
         <hr />
         <section className={styles.howItWorksSection}>
-          <p><strong>1. Report in under two minutes.</strong> Pick a category, describe the issue, drop a location and attach photos or video.</p>
-          <p><strong>2. Keep your reference ID.</strong> Every report returns an ID such as LGS-84920 that works without an account.</p>
-          <p><strong>3. Track the response.</strong> Received → AI triage → agency assigned → resolution.</p>
-          <p><strong>4. Sensitive reports stay private.</strong> Personal Safety / GBV reports are handled on a restricted channel and never appear in the public feed.</p>
+          <p>
+            <strong>{t('howItWorks.step1Title')}</strong>{' '}
+            {t('howItWorks.step1Body')}
+          </p>
+          <p>
+            <strong>{t('howItWorks.step2Title')}</strong>{' '}
+            {t('howItWorks.step2Body')}
+          </p>
+          <p>
+            <strong>{t('howItWorks.step3Title')}</strong>{' '}
+            {t('howItWorks.step3Body')}
+          </p>
+          <p>
+            <strong>{t('howItWorks.step4Title')}</strong>{' '}
+            {t('howItWorks.step4Body')}
+          </p>
         </section>
         <div className={styles.emergencySection}>
-          <p>Emergency? Call the Lagos State toll-free emergency line <strong>767</strong> or <strong>112</strong> as well as filing a report.</p>
+          <p>
+            {t('howItWorks.emergency', {
+              primary: EMERGENCY_NUMBERS.primary ?? '767',
+              secondary: EMERGENCY_NUMBERS.secondary ?? '112',
+            })}
+          </p>
+           <ContactLinks
+            phone={primaryAgency.phone}
+            website={primaryAgency.website}
+            email={primaryAgency.email}
+          />
+          <p className={styles.serviceHours}>
+            {REGION.serviceHours.weekday} · {REGION.serviceHours.emergency}
+          </p>
         </div>
       </div>
     </div>

@@ -1,0 +1,19 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--accent-danger);
+  background: transparent;
+  color: var(--accent-danger);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.button:hover {
+  background: rgba(239, 68, 68, 0.1);
+}

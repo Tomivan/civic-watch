@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import styles from './page.module.css';
 import { ReportData } from '../../report-incident/page';
+import { t } from '../../lib/i18n';
 import InfrastructureIcon from '../../../../public/assets/images/infrastructure.svg';
 import EnvironmentIcon from '../../../../public/assets/images/environment.svg';
 import SanitationIcon from '../../../../public/assets/images/sanitation.svg';
@@ -31,10 +32,31 @@ interface Props {
 
 const Category = ({ data, onUpdate, onNext }: Props) => {
   const categories: CategoryItem[] = [
-    { id: 'infrastructure', title: 'Infrastructure', description: 'Roads, bridges, streetlights, public buildings', icon: InfrastructureIcon },
-    { id: 'environment', title: 'Environment', description: 'Drainage, flooding, air and water pollution', icon: EnvironmentIcon },
-    { id: 'sanitation', title: 'Sanitation', description: 'Waste collection, illegal dumping, public hygiene', icon: SanitationIcon },
-    { id: 'safety', title: 'Personal Safety / GBV', description: 'Handled on a restricted, confidential channel', icon: SafetyIcon, restricted: true },
+    {
+      id: 'infrastructure',
+      title: t('wizard.category.infrastructure.title'),
+      description: t('wizard.category.infrastructure.description'),
+      icon: InfrastructureIcon,
+    },
+    {
+      id: 'environment',
+      title: t('wizard.category.environment.title'),
+      description: t('wizard.category.environment.description'),
+      icon: EnvironmentIcon,
+    },
+    {
+      id: 'sanitation',
+      title: t('wizard.category.sanitation.title'),
+      description: t('wizard.category.sanitation.description'),
+      icon: SanitationIcon,
+    },
+    {
+      id: 'safety',
+      title: t('wizard.category.safety.title'),
+      description: t('wizard.category.safety.description'),
+      icon: SafetyIcon,
+      restricted: true,
+    },
   ];
 
   const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
@@ -45,53 +67,69 @@ const Category = ({ data, onUpdate, onNext }: Props) => {
 
   return (
     <div className={styles.mainCard}>
-        <div className={styles.mainHeader}>
-            <h1>What kind of issue are you reporting?</h1>
-            <p>This decides which Lagos State agency receives your report first.</p>
+      <div className={styles.mainHeader}>
+        <h1>{t('wizard.category.title')}</h1>
+        <p>{t('wizard.category.subtitle')}</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.categoryGrid} role="radiogroup" aria-label={t('wizard.category.title')}>
+          {categories.map((cat) => {
+            const selected = data.category === cat.id;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                className={`${styles.categoryCard} ${
+                  selected ? styles.categorySelected : ''
+                } ${cat.restricted ? styles.categoryRestricted : ''}`}
+                onClick={() => onUpdate({ category: cat.id })}
+              >
+                <div className={styles.categoryIcon}>
+                  <Image src={cat.icon} alt="" width={24} height={24} />
+                </div>
+                <div className={styles.categoryInfo}>
+                  <h3>{cat.title}</h3>
+                  <p>{cat.description}</p>
+                  {cat.restricted && (
+                    <div className={styles.restrictedBadge}>
+                      <Image src={LockIcon} alt="" width={12} height={12} />
+                      {t('wizard.category.restrictedBadge')}
+                    </div>
+                  )}
+                </div>
+                {selected && (
+                  <div className={styles.checkBadge} aria-hidden="true">
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      size="1x"
+                      color="#ffffff"
+                      className={styles.icon1}
+                    />
+                  </div>
+                )}
+              </button>
+            );
+          })}
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.categoryGrid}>
-                {categories.map((cat) => (
-                    <button
-                    key={cat.id}
-                    type="button"
-                    className={`${styles.categoryCard} ${data.category === cat.id ? styles.categorySelected : ''} ${cat.restricted ? styles.categoryRestricted : ''}`}
-                    onClick={() => onUpdate({ category: cat.id })}
-                    >
-                        <div className={styles.categoryIcon}>
-                            <Image src={cat.icon} alt={cat.title} width={24} height={24} />
-                        </div>
-                        <div className={styles.categoryInfo}>
-                            <h3>{cat.title}</h3>
-                            <p>{cat.description}</p>
-                            {cat.restricted && (
-                                <div className={styles.restrictedBadge}>
-                                    <Image src={LockIcon} alt="Lock" width={12} height={12} />
-                                    RESTRICTED CHANNEL
-                                </div>
-                                )}
-                        </div>
-                        {data.category === cat.id && (
-                            <div className={styles.checkBadge}>
-                                <FontAwesomeIcon icon={faCheck} size="1x" color="#ffffff" className={styles.icon1} />
-                            </div>
-                        )}
-                    </button>
-                ))}
-            </div>
-            
-            <div className={styles.footerNav}>
-                <Link href="/" className={styles.cancelBtn}>
-                <Image src={ArrowLeftIcon} alt="Back" width={16} height={16} />
-                    Cancel
-                </Link>
-                <button type="submit" className={styles.continueBtn}>
-                    Continue
-                    <Image src={ArrowRightIcon} alt="Next" width={16} height={16} />
-                </button>
-            </div>
-        </form>
+        <div className={styles.footerNav}>
+          <Link href="/" className={styles.cancelBtn}>
+            <Image src={ArrowLeftIcon} alt="" width={16} height={16} />
+            {t('common.cancel')}
+          </Link>
+          <button
+            type="submit"
+            className={styles.continueBtn}
+            disabled={!data.category}
+          >
+            {t('common.continue')}
+            <Image src={ArrowRightIcon} alt="" width={16} height={16} />
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

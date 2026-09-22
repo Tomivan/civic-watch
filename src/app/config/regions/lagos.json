@@ -1,0 +1,110 @@
+{
+  "id": "lagos",
+  "name": "Lagos State",
+  "country": "Nigeria",
+  "countryCode": "NG",
+  "currency": "NGN",
+  "timezone": "Africa/Lagos",
+  "defaultLocale": "en",
+  "supportedLocales": ["en", "pcm", "yo", "ha", "ig"],
+  "emergencyNumbers": {
+    "primary": "767",
+    "secondary": "112",
+    "police": "112",
+    "fire": "112",
+    "ambulance": "112",
+    "notes": "Toll-free. Works on all networks in Lagos State."
+  },
+  "serviceHours": {
+    "weekday": "Mon–Fri, 8:00–17:00",
+    "weekend": "Sat, 9:00–14:00",
+    "emergency": "24/7"
+  },
+  "lgas": [
+    { "id": "ikeja", "name": "Ikeja", "zone": "Mainland" },
+    { "id": "oshodi", "name": "Oshodi-Isolo", "zone": "Mainland" },
+    { "id": "surulere", "name": "Surulere", "zone": "Mainland" },
+    { "id": "yaba", "name": "Yaba", "zone": "Mainland" },
+    { "id": "mushin", "name": "Mushin", "zone": "Mainland" },
+    { "id": "apapa", "name": "Apapa", "zone": "Mainland" },
+    { "id": "eti-osa", "name": "Eti-Osa", "zone": "Island" },
+    { "id": "lagos-island", "name": "Lagos Island", "zone": "Island" },
+    { "id": "ikoyi", "name": "Ikoyi", "zone": "Island" },
+    { "id": "victoria-island", "name": "Victoria Island", "zone": "Island" },
+    { "id": "ajah", "name": "Ajah", "zone": "Island" },
+    { "id": "lekki", "name": "Lekki", "zone": "Island" },
+    { "id": "alimosho", "name": "Alimosho", "zone": "Mainland" },
+    { "id": "agege", "name": "Agege", "zone": "Mainland" },
+    { "id": "ifako-ijaiye", "name": "Ifako-Ijaiye", "zone": "Mainland" },
+    { "id": "kosofe", "name": "Kosofe", "zone": "Mainland" },
+    { "id": "amowo-odofin", "name": "Amuwo-Odofin", "zone": "Mainland" },
+    { "id": "badagry", "name": "Badagry", "zone": "Mainland" },
+    { "id": "epe", "name": "Epe", "zone": "Mainland" },
+    { "id": "ibeju-lekki", "name": "Ibeju-Lekki", "zone": "Island" }
+  ],
+  "agencies": [
+    {
+      "id": "lasema",
+      "name": "LASEMA",
+      "fullName": "Lagos State Emergency Management Agency",
+      "phone": "767",
+      "website": "https://lasema.lagosstate.gov.ng",
+      "email": "info@lasema.lagosstate.gov.ng",
+      "categories": ["emergency", "flooding", "collapse"],
+      "slaHours": 24
+    },
+    {
+      "id": "lawma",
+      "name": "LAWMA",
+      "fullName": "Lagos Waste Management Authority",
+      "phone": "07080601020",
+      "website": "https://lawma.ng",
+      "email": "info@lawma.ng",
+      "categories": ["sanitation", "waste", "drainage"],
+      "slaHours": 72
+    },
+    {
+      "id": "lamata",
+      "name": "LAMATA",
+      "fullName": "Lagos Metropolitan Area Transport Authority",
+      "phone": "07080601030",
+      "website": "https://lamata-ng.com",
+      "email": "info@lamata-ng.com",
+      "categories": ["infrastructure", "roads", "traffic"],
+      "slaHours": 120
+    },
+    {
+      "id": "lasg-works",
+      "name": "LASG Ministry of Works",
+      "fullName": "Lagos State Ministry of Works and Infrastructure",
+      "phone": "07080601040",
+      "website": "https://works.lagosstate.gov.ng",
+      "email": "info@works.lagosstate.gov.ng",
+      "categories": ["infrastructure", "streetlights", "bridges"],
+      "slaHours": 168
+    },
+    {
+      "id": "lagos-dss",
+      "name": "Lagos DSVA",
+      "fullName": "Lagos State Domestic and Sexual Violence Agency",
+      "phone": "08139672333",
+      "website": "https://dsva.lagosstate.gov.ng",
+      "email": "info@dsva.lagosstate.gov.ng",
+      "categories": ["safety", "gbv"],
+      "slaHours": 12
+    }
+  ],
+  "categoryRouting": {
+    "infrastructure": ["lamata", "lasg-works"],
+    "environment": ["lawma", "lasema"],
+    "sanitation": ["lawma"],
+    "safety": ["lagos-dss"]
+  },
+  "categorySlaHours": {
+    "infrastructure": 120,
+    "environment": 72,
+    "sanitation": 72,
+    "safety": 12
+  },
+  "restrictedCategories": ["safety"]
+}
